@@ -10,8 +10,8 @@ app.use(express.urlencoded({extended : false}))
 // ----------STUDENTS_METHODS-----------
 app.get('/student', fetchStudent)
 app.post('/student', createStudent)
-app.put('/student', updateStudent)
-app.delete('/student', deleteStudent)
+app.put('/student/:id', updateStudent)
+app.delete('/student/:id', deleteStudent)
 
 // -------------TEARCHER_METHODS---------
 app.get('/teacher', fetchStudent)

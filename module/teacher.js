@@ -2,7 +2,7 @@ const {MongoClient} = require("mongodb")
 let db = null
 MongoClient.connect("mongodb://localhost:27017")
 .then((client)=>{
-    const db = client.db("wapschool")
+     db = client.db("wapschool")
 })
 
 .catch((err)=>{
