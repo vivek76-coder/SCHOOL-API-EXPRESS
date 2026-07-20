@@ -14,10 +14,10 @@ app.put('/student/:id', updateStudent)
 app.delete('/student/:id', deleteStudent)
 
 // -------------TEARCHER_METHODS---------
-app.get('/teacher', fetchStudent)
+app.get('/teacher', fetchTeacher)
 app.post('/teacher', createTeacher)
-app.put('/teacher',updateTeacher)
-app.delete('/teacher',deleteTeacher)
+app.put('/teacher/:id',updateTeacher)
+app.delete('/teacher/:id',deleteTeacher)
 
 
 

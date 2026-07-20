@@ -1,4 +1,4 @@
-const {MongoClient} = require("mongodb")
+const {MongoClient, ObjectId} = require("mongodb")
 let db = null
 MongoClient.connect("mongodb://localhost:27017")
 .then((client)=>{
@@ -11,22 +11,34 @@ MongoClient.connect("mongodb://localhost:27017")
 })
 
 
-const createTeacher = (req, res, Collections)=>{
-    res.status(200).json("success")
+const createTeacher = async (req, res, Collections)=>{
+    const TeacherCollection = db.collection("teachers")
+    const payload = req.body
+    await TeacherCollection.insertOne(payload)
+    res.status(200).json(payload)
 }
 
 
-const fetchTeacher = (req, res, Collections)=>{
-    res.status(200).json("success")
+const fetchTeacher = async (req, res, Collections)=>{
+    const TeacherCollection = db.collection("teachers")
+    const teacherData = await TeacherCollection.find().toArray()
+    res.status(200).json(teacherData)
 }
 
 
 const updateTeacher = (req, res, Collections)=>{
+    const TeacherCollection = db.collection("teachers")
+    const {id} = req.params
+    const payload = req.body
+    TeacherCollection.updateOne({_id : new ObjectId(id)},{$set : payload})
     res.status(200).json("success")
 }
 
 
-const deleteTeacher = (req, res, Collections)=>{
+const deleteTeacher = async (req, res, Collections)=>{
+    const TeacherCollection = db.collection("teachers")
+    const {id} = req.params
+    await TeacherCollection.deleteOne({_id : new ObjectId(id)})
     res.status(200).json("success")
 }
 
